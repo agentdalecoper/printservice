@@ -16,8 +16,13 @@ import ru.nvg.printservice.services.JobService;
 public class JobController {
     public static final String BASE_URL = "/api/v1/jobs";
 
-    @Autowired
+    final
     JobService jobService;
+
+    @Autowired
+    public JobController(JobService jobService) {
+        this.jobService = jobService;
+    }
 
     @PostMapping
     public JobSummaryDto createJob(@Validated SaveJobCmd cmd) {
