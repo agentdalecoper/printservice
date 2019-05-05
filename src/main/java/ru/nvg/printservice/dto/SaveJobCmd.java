@@ -1,13 +1,18 @@
 package ru.nvg.printservice.dto;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.*;
 import java.util.List;
 
-@Data
+@XmlRootElement(name = "jobs")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType
 public class SaveJobCmd {
     //Validate here that jobs.length >= 1
-    @NotNull
+    @XmlElement(name = "job")
     public List<JobDto> jobs;
 }

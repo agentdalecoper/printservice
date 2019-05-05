@@ -30,7 +30,7 @@ public class JobServiceImpl implements JobService {
         Map<User, Integer> summary = jobSummaryDto.summaryForTransaction;
 
         for (JobDto jobDto : cmd.jobs) {
-            Job job = new Job(jobDto.id, jobDto.type, jobDto.user, jobDto.amount, time);
+            Job job = new Job(jobDto.getId(), jobDto.type, jobDto.user, jobDto.amount, time);
             jobRepository.save(job);
             int amount = summary.getOrDefault(job.user, 0);
             summary.put(job.user, amount + jobDto.amount);
