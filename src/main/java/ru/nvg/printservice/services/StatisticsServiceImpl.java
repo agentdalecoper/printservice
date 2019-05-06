@@ -2,7 +2,6 @@ package ru.nvg.printservice.services;
 
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.stereotype.Component;
 import ru.nvg.printservice.dao.JobRepository;
 import ru.nvg.printservice.domain.*;

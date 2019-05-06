@@ -13,6 +13,6 @@ import java.util.List;
 @XmlType
 public class SaveJobCmd {
     //Validate here that jobs.length >= 1
-    @XmlElement(name = "job")
+    @XmlElement(name = "job") @NotNull
     public List<JobDto> jobs;
 }

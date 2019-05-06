@@ -28,7 +28,7 @@ public class JobController {
     }
 
     @PostMapping
-    public JobSummaryDto createJob(@RequestBody SaveJobCmd cmd) {
+    public JobSummaryDto createJob(@RequestBody @Validated SaveJobCmd cmd) {
         log.debug("creating job " + cmd);
 
         return jobService.saveJobs(cmd);
