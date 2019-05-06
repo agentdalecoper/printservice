@@ -12,6 +12,7 @@ import ru.nvg.printservice.domain.Job;
 import ru.nvg.printservice.domain.JobType;
 import ru.nvg.printservice.domain.QJob;
 import ru.nvg.printservice.domain.User;
+import ru.nvg.printservice.dto.StatisticSummaryNodeDto;
 import ru.nvg.printservice.qdsl.StatisticFilter;
 import ru.nvg.printservice.qdsl.StatisticFilterBuilder;
 import ru.nvg.printservice.services.StatisticsService;
@@ -34,7 +35,7 @@ public class StatisticController {
     }
 
     @GetMapping
-    Iterable<Job> getStatistics(@RequestParam(required=false) String user,
+    Iterable<StatisticSummaryNodeDto> getStatistics(@RequestParam(required=false) String user,
                                 @RequestParam(required=false) String device,
                                 @RequestParam(required=false) JobType type,
                                 @RequestParam(required = false)
@@ -42,6 +43,8 @@ public class StatisticController {
                                 @RequestParam(required = false)
                                 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime timeFrom) {
 
-        return statisticsService.statisticsFilter(user, device, type, timeFrom, timeTo);
+        Iterable<Job> jobs =  statisticsService.statisticsFilter(user, device, type, timeFrom, timeTo);
+
+        return statisticsService.toSummary(jobs);
     }
 }

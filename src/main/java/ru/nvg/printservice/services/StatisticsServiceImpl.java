@@ -6,10 +6,12 @@ import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.stereotype.Component;
 import ru.nvg.printservice.dao.JobRepository;
 import ru.nvg.printservice.domain.*;
+import ru.nvg.printservice.dto.StatisticSummaryNodeDto;
 import ru.nvg.printservice.qdsl.StatisticFilter;
 import ru.nvg.printservice.qdsl.StatisticFilterBuilder;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -19,6 +21,19 @@ public class StatisticsServiceImpl implements StatisticsService {
     @Autowired
     public StatisticsServiceImpl(JobRepository jobRepository) {
         this.jobRepository = jobRepository;
+    }
+
+
+    public Iterable<StatisticSummaryNodeDto> toSummary(Iterable<Job> jobs)
+    {
+        List<StatisticSummaryNodeDto> res = new ArrayList<>();
+
+        for(Job job: jobs)
+        {
+            res.add(new StatisticSummaryNodeDto(job));
+        }
+
+        return res;
     }
 
     @Override
