@@ -1,10 +1,7 @@
 package ru.nvg.printservice.dto;
 
 import ru.nvg.printservice.domain.JobType;
-import ru.nvg.printservice.domain.User;
-
 import javax.xml.bind.annotation.*;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlRootElement(name = "job")
 public class JobDto {

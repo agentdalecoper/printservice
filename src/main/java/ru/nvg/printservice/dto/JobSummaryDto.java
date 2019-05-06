@@ -1,7 +1,5 @@
 package ru.nvg.printservice.dto;
 
-import ru.nvg.printservice.domain.User;
-
 import java.util.HashMap;
 import java.util.Map;
 

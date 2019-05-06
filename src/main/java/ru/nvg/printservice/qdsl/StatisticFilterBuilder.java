@@ -1,11 +1,9 @@
 package ru.nvg.printservice.qdsl;
 
 import com.querydsl.core.types.Predicate;
-import com.querydsl.core.types.dsl.EnumPath;
-import ru.nvg.printservice.domain.JobType;
 import ru.nvg.printservice.domain.QJob;
 
-public class StatisticFilterBuilder  {
+public class StatisticFilterBuilder {
 
     private final QJob POST = QJob.job;
 

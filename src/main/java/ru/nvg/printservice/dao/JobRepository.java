@@ -11,8 +11,5 @@ import ru.nvg.printservice.domain.Job;
 import ru.nvg.printservice.domain.QJob;
 
 @Repository
-public interface JobRepository extends JpaRepository<Job, Long>, QuerydslPredicateExecutor<Job>, QuerydslBinderCustomizer<QJob> {
-    @Override
-    default void customize(QuerydslBindings bindings, QJob root) {
-    }
+public interface JobRepository extends JpaRepository<Job, Long>, QuerydslPredicateExecutor<Job> {
 }
