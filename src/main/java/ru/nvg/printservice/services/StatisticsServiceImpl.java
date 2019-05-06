@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import ru.nvg.printservice.dao.JobRepository;
 import ru.nvg.printservice.domain.*;
 import ru.nvg.printservice.qdsl.StatisticFilter;
+import ru.nvg.printservice.qdsl.StatisticFilterBuilder;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,9 +22,21 @@ public class StatisticsServiceImpl implements StatisticsService {
     }
 
     @Override
-    public Iterable<Job> statisticsFilter(Predicate predicate) {
+    public Iterable<Job> statisticsFilter(String user, String device, JobType type, LocalDateTime timeFrom,
+                            LocalDateTime timeTo)
+    {
+        StatisticFilter filter = new StatisticFilter(user, device,
+                type, timeFrom, timeTo);
 
-//        return null;
+        StatisticFilterBuilder statisticFilterBuilder = new StatisticFilterBuilder();
+        Predicate predicate = statisticFilterBuilder.build(filter);
+
+        return statisticsFilter(predicate);
+    }
+
+
+    private Iterable<Job> statisticsFilter(Predicate predicate) {
+
         return jobRepository.findAll(predicate);
     }
 }

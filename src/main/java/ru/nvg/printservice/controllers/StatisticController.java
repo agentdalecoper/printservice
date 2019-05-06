@@ -41,20 +41,7 @@ public class StatisticController {
                                 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime timeTo,
                                 @RequestParam(required = false)
                                 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime timeFrom) {
-        StatisticFilter statisticFilter = new StatisticFilter();
-        statisticFilter.setUser(user);
-        statisticFilter.setDevice(device);
-        statisticFilter.setType(type);
-        statisticFilter.setTimeTo(timeTo);
-        statisticFilter.setTimeFrom(timeFrom);
 
-        StatisticFilterBuilder statisticFilterBuilder = new StatisticFilterBuilder();
-        Predicate predicate = statisticFilterBuilder.build(statisticFilter);
-
-        return statisticsService.statisticsFilter(predicate);
-
-
-        //Predicate p = QJob.job.device.name.eq(device);
-        //return statisticsService.statisticsFilter(predicate);
+        return statisticsService.statisticsFilter(user, device, type, timeFrom, timeTo);
     }
 }
