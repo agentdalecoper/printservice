@@ -1,5 +1,6 @@
 package ru.nvg.printservice.services;
 
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,12 +24,10 @@ public class StatisticsServiceImpl implements StatisticsService {
     }
 
 
-    public Iterable<StatisticSummaryNodeDto> toSummary(Iterable<Job> jobs)
-    {
+    public Iterable<StatisticSummaryNodeDto> toSummary(Iterable<Job> jobs) {
         List<StatisticSummaryNodeDto> res = new ArrayList<>();
 
-        for(Job job: jobs)
-        {
+        for (Job job : jobs) {
             res.add(new StatisticSummaryNodeDto(job));
         }
 
@@ -37,8 +36,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public Iterable<Job> statisticsFilter(String user, String device, JobType type, LocalDateTime timeFrom,
-                            LocalDateTime timeTo)
-    {
+                                          LocalDateTime timeTo) {
         StatisticFilter filter = new StatisticFilter(user, device,
                 type, timeFrom, timeTo);
 
@@ -50,7 +48,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
 
     private Iterable<Job> statisticsFilter(Predicate predicate) {
-
-        return jobRepository.findAll(predicate);
+        OrderSpecifier<LocalDateTime> order = QJob.job.time.asc();
+        return jobRepository.findAll(predicate, order);
     }
 }
