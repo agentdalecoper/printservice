@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JobSummaryDto {
-    public Map<User, Integer> summaryForTransaction;
+    public Map<String, Integer> summaryForTransaction;
 
     public JobSummaryDto()
     {

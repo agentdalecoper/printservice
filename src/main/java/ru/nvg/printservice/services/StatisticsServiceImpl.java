@@ -5,10 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.stereotype.Component;
 import ru.nvg.printservice.dao.JobRepository;
-import ru.nvg.printservice.domain.Device;
-import ru.nvg.printservice.domain.Job;
-import ru.nvg.printservice.domain.JobType;
-import ru.nvg.printservice.domain.User;
+import ru.nvg.printservice.domain.*;
+import ru.nvg.printservice.qdsl.StatisticFilter;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,6 +22,8 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public Iterable<Job> statisticsFilter(Predicate predicate) {
+
+//        return null;
         return jobRepository.findAll(predicate);
     }
 }

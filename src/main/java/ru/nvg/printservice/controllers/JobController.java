@@ -20,8 +20,7 @@ import java.awt.*;
 public class JobController {
     public static final String BASE_URL = "/api/v1/jobs";
 
-    final
-    JobService jobService;
+    private final JobService jobService;
 
     @Autowired
     public JobController(JobService jobService) {
@@ -32,6 +31,6 @@ public class JobController {
     public JobSummaryDto createJob(@RequestBody SaveJobCmd cmd) {
         log.debug("creating job " + cmd);
 
-            return jobService.saveJobs(cmd);
+        return jobService.saveJobs(cmd);
     }
 }

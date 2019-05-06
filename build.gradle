@@ -12,7 +12,7 @@ buildscript {
 
 plugins {
     id 'io.franzbecker.gradle-lombok' version '1.10'
-    id "com.ewerk.gradle.plugins.querydsl" version "1.0.8"
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
 apply plugin: 'java'
@@ -39,6 +39,7 @@ dependencies {
 
     compile('org.hibernate:hibernate-java8:5.1.0.Final')
     compileOnly('org.projectlombok:lombok')
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
 }
 
 group = 'ru.nvg'

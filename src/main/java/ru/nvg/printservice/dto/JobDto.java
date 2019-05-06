@@ -9,9 +9,15 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlRootElement(name = "job")
 public class JobDto {
     private Long id;
+
     @XmlEnumValue("type")
     public JobType type;
-    public User user;
+
+    @XmlElement(name = "user")
+    public String userName;
+    @XmlElement(name = "device")
+    public String deviceName;
+
     public int amount;
 
     @XmlAttribute
