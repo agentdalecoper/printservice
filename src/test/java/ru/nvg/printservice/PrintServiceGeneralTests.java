@@ -93,10 +93,11 @@ public class PrintServiceGeneralTests {
         User user1 = createUser(user1Name);
         Device device1 = createDevice(device1Name);
 
+        //Create job
         JobDto job1 = createJobDto(999L, user1.getName(),
                 device1.getName(), JobType.print, 99);
 
-
+        //Pass job to command and pass to the service
         SaveJobCmd cmd = new SaveJobCmd();
         cmd.jobs = new ArrayList<>();
         cmd.jobs.add(job1);
@@ -104,6 +105,7 @@ public class PrintServiceGeneralTests {
         JobSummaryDto res = jobService.saveJobs(cmd);
         assert res.summaryForTransaction.containsKey(user1Name);
         assert res.summaryForTransaction.get(user1Name) == 99;
+        assert jobRepository.findById(999L).isPresent();
     }
 
     /*
@@ -120,6 +122,7 @@ public class PrintServiceGeneralTests {
         Device device1 = createDevice();
         Device device2 = createDevice();
 
+        //Create jobs
         JobDto job1 = createJobDto(999L, user1.getName(),
                 device1.getName(), JobType.print, 2);
 
@@ -133,6 +136,7 @@ public class PrintServiceGeneralTests {
                 device1.getName(), JobType.copy, 99);
 
 
+        //Create bulk job command and pass it to the service
         SaveJobCmd cmd = new SaveJobCmd();
         cmd.jobs = new ArrayList<>();
         cmd.jobs.add(job1);
@@ -160,6 +164,7 @@ public class PrintServiceGeneralTests {
         Device device1 = createDevice();
         Device device2 = createDevice();
 
+        //Create jobs
         JobDto job1 = createJobDto(999L, user1.getName(),
                 device1.getName(), JobType.print, 2);
 
@@ -172,7 +177,7 @@ public class PrintServiceGeneralTests {
         JobDto job4 = createJobDto(1002L, user3.getName(),
                 device1.getName(), JobType.copy, 99);
 
-
+        //Create bulk job command and pass it to the service
         SaveJobCmd cmd = new SaveJobCmd();
         cmd.jobs = new ArrayList<>();
         cmd.jobs.add(job1);
@@ -182,6 +187,7 @@ public class PrintServiceGeneralTests {
 
         jobService.saveJobs(cmd);
 
+        //Check statistic
         List<StatisticSummaryNodeDto> res = getStatistic(user1);
         assert res.size() == 2;
         assert res.get(0).getJobId() == 999L;
