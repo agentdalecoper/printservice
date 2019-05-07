@@ -25,7 +25,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-test'
 
-
     compile "com.querydsl:querydsl-root:$querydslVersion"
     compile "com.querydsl:querydsl-jpa:$querydslVersion"
     compile "com.querydsl:querydsl-apt:$querydslVersion:jpa"
