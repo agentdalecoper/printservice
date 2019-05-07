@@ -12,6 +12,7 @@ import ru.nvg.printservice.dto.JobDto;
 import ru.nvg.printservice.dto.JobSummaryDto;
 import ru.nvg.printservice.dto.SaveJobCmd;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Map;
 
@@ -30,6 +31,7 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
+    @Transactional
     public JobSummaryDto saveJobs(SaveJobCmd cmd) {
         LocalDateTime time = LocalDateTime.now();
 
