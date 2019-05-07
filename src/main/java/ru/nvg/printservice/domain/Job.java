@@ -19,7 +19,6 @@ import java.time.LocalDateTime;
 @Table(schema = "public", name = "job")
 public class Job {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     public JobType type;
