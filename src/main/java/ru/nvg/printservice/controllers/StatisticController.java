@@ -12,6 +12,7 @@ import ru.nvg.printservice.dto.StatisticSummaryNodeDto;
 import ru.nvg.printservice.services.StatisticsService;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping(StatisticController.BASE_URL)
@@ -26,7 +27,7 @@ public class StatisticController {
     }
 
     @GetMapping
-    Iterable<StatisticSummaryNodeDto> getStatistics(@RequestParam(required=false) String user,
+    List<StatisticSummaryNodeDto> getStatistics(@RequestParam(required=false) String user,
                                 @RequestParam(required=false) String device,
                                 @RequestParam(required=false) JobType type,
                                 @RequestParam(required = false)
@@ -34,7 +35,7 @@ public class StatisticController {
                                 @RequestParam(required = false)
                                 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime timeFrom) {
 
-        Iterable<Job> jobs =  statisticsService.statisticsFilter(user, device, type, timeFrom, timeTo);
+        List<Job> jobs =  statisticsService.statisticsFilter(user, device, type, timeFrom, timeTo);
 
         return statisticsService.toSummary(jobs);
     }

@@ -12,8 +12,8 @@ import java.util.List;
 
 public interface StatisticsService {
     //ToDo add proper comments
-    Iterable<Job> statisticsFilter(String user, String device, JobType type, LocalDateTime timeFrom,
+    List<Job> statisticsFilter(String user, String device, JobType type, LocalDateTime timeFrom,
                                    LocalDateTime timeTo);
 
-    Iterable<StatisticSummaryNodeDto> toSummary(Iterable<Job> jobs);
+    List<StatisticSummaryNodeDto> toSummary(Iterable<Job> jobs);
 }

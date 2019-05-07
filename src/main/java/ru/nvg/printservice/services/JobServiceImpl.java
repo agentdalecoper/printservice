@@ -11,6 +11,8 @@ import ru.nvg.printservice.domain.User;
 import ru.nvg.printservice.dto.JobDto;
 import ru.nvg.printservice.dto.JobSummaryDto;
 import ru.nvg.printservice.dto.SaveJobCmd;
+import ru.nvg.printservice.exceptions.DeviceNotFoundException;
+import ru.nvg.printservice.exceptions.UserNotFoundException;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
@@ -40,7 +42,16 @@ public class JobServiceImpl implements JobService {
 
         for (JobDto jobDto : cmd.getJobs()) {
             User user = userRepository.findByName(jobDto.getUserName());
+
+            if (user == null) {
+                throw new UserNotFoundException(jobDto.getUserName());
+            }
+
             Device device = deviceRepository.findByName(jobDto.getDeviceName());
+
+            if (device == null) {
+                throw new DeviceNotFoundException(jobDto.getDeviceName());
+            }
 
             Job job = new Job(jobDto.getId(), jobDto.getType(), user, device,
                     jobDto.getAmount(), time);

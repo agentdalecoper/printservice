@@ -24,7 +24,7 @@ public class StatisticsServiceImpl implements StatisticsService {
     }
 
 
-    public Iterable<StatisticSummaryNodeDto> toSummary(Iterable<Job> jobs) {
+    public List<StatisticSummaryNodeDto> toSummary(Iterable<Job> jobs) {
         List<StatisticSummaryNodeDto> res = new ArrayList<>();
 
         for (Job job : jobs) {
@@ -35,7 +35,7 @@ public class StatisticsServiceImpl implements StatisticsService {
     }
 
     @Override
-    public Iterable<Job> statisticsFilter(String user, String device, JobType type, LocalDateTime timeFrom,
+    public List<Job> statisticsFilter(String user, String device, JobType type, LocalDateTime timeFrom,
                                           LocalDateTime timeTo) {
         StatisticFilter filter = new StatisticFilter(user, device,
                 type, timeFrom, timeTo);
@@ -47,8 +47,8 @@ public class StatisticsServiceImpl implements StatisticsService {
     }
 
 
-    private Iterable<Job> statisticsFilter(Predicate predicate) {
+    private List<Job> statisticsFilter(Predicate predicate) {
         OrderSpecifier<LocalDateTime> order = QJob.job.time.asc();
-        return jobRepository.findAll(predicate, order);
+        return (List<Job>) jobRepository.findAll(predicate, order);
     }
 }
