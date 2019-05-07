@@ -4,6 +4,9 @@ PrintService - проект по заданию на интервью.
 
 Основные технологии: java8, spring, gradle, query dsl, postgree sql, flyway, thymeleaf.
 
+Для логирования используется @Slf4j .
+
+
 Создание job происходит через Post запрос с xml /api/v1/jobs .
 ![image](https://user-images.githubusercontent.com/23356183/57305123-33c8cf80-70e9-11e9-9c3c-5e2f37b2a5a0.png)
 
