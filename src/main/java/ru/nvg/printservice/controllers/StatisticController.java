@@ -1,5 +1,6 @@
 package ru.nvg.printservice.controllers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(StatisticController.BASE_URL)
+@Slf4j
 public class StatisticController {
     public static final String BASE_URL = "/api/v1/statistics";
 
@@ -31,9 +33,11 @@ public class StatisticController {
                                 @RequestParam(required=false) String device,
                                 @RequestParam(required=false) JobType type,
                                 @RequestParam(required = false)
-                                @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime timeTo,
+                                @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime timeFrom,
                                 @RequestParam(required = false)
-                                @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime timeFrom) {
+                                @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime timeTo) {
+        log.debug("Querying for statistics, cmd - user {} device {} type {} timefrom {} timeto {}",
+                user, device, type, timeFrom, timeTo);
 
         List<Job> jobs =  statisticsService.statisticsFilter(user, device, type, timeFrom, timeTo);
 
