@@ -3,6 +3,7 @@ package ru.nvg.printservice.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -12,12 +13,12 @@ import javax.persistence.*;
 @ToString
 @EqualsAndHashCode(of="name")
 public class User {
-    //ToDo Here too name of the user must be unique?
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true)
+    @NotNull
     public String name;
 
 }

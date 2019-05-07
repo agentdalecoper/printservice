@@ -10,10 +10,21 @@ import ru.nvg.printservice.dto.StatisticSummaryNodeDto;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface StatisticsService {
-    //ToDo add proper comments
-    List<Job> statisticsFilter(String user, String device, JobType type, LocalDateTime timeFrom,
-                                   LocalDateTime timeTo);
+/*
+Service for user statistics, data filtering.
+*/
 
+public interface StatisticsService {
+
+    /*
+    Method for filtering data based on user search query. All arguments are nullable.
+    Should return appropriate list of jobs for a given query.
+     */
+    List<Job> statisticsFilter(String user, String device, JobType type, LocalDateTime timeFrom,
+                               LocalDateTime timeTo);
+
+    /*
+    Method for cast to summary list of jobs
+     */
     List<StatisticSummaryNodeDto> toSummary(Iterable<Job> jobs);
 }

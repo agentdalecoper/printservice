@@ -1,9 +1,11 @@
 package ru.nvg.printservice.dto;
 
+import lombok.Data;
 import ru.nvg.printservice.domain.JobType;
 import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "job")
+@Data
 public class JobDto {
     private Long id;
     @XmlEnumValue("type")
@@ -22,37 +24,5 @@ public class JobDto {
 
     public Long getId() {
         return id;
-    }
-
-    public JobType getType() {
-        return type;
-    }
-
-    public void setType(JobType type) {
-        this.type = type;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public String getDeviceName() {
-        return deviceName;
-    }
-
-    public void setDeviceName(String deviceName) {
-        this.deviceName = deviceName;
     }
 }

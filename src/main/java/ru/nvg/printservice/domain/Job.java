@@ -10,7 +10,10 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 
-//ToDo rename it to not a job
+/*
+   Basic representation of user job on device.
+ */
+
 @Getter
 @Setter
 @Entity
@@ -21,6 +24,7 @@ public class Job {
     @Id
     private Long id;
 
+    @NotNull
     public JobType type;
 
     @OneToOne
@@ -31,6 +35,7 @@ public class Job {
     @NotNull
     public Device device;
 
+    @NotNull
     public int amount;
 
     public LocalDateTime time;
