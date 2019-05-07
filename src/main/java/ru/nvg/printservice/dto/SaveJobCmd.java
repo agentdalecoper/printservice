@@ -11,17 +11,4 @@ public class SaveJobCmd {
     //Validate here that jobs.length >= 1
     @XmlElement(name = "job") @NotNull
     public List<JobDto> jobs;
-
-    public void addJobDto(JobDto jobDto)
-    {
-        this.getJobs().add(jobDto);
-    }
-
-    public List<JobDto> getJobs() {
-        return jobs;
-    }
-
-    public void setJobs(List<JobDto> jobs) {
-        this.jobs = jobs;
-    }
 }

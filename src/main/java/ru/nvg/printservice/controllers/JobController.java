@@ -29,17 +29,13 @@ public class JobController {
 
     @GetMapping
     public String jobForm(Model model) {
-        SaveJobCmd cmd = new SaveJobCmd();
-        cmd.setJobs(new ArrayList<>());
-        cmd.addJobDto(new JobDto());
-
         model.addAttribute("job", new JobDto());
         return "jobform";
     }
 
     @PostMapping
     @ResponseBody
-    public JobSummaryDto saveJobBulk(@ModelAttribute @RequestBody @Validated SaveJobCmd saveJobCmd) {
+    public JobSummaryDto saveJobBulk(@RequestBody @Validated SaveJobCmd saveJobCmd) {
         log.debug("saving jobs" + saveJobCmd);
 
         return jobService.saveJobs(saveJobCmd);

@@ -5,8 +5,10 @@ import ru.nvg.printservice.domain.JobType;
 import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "job")
+@XmlAccessorType(XmlAccessType.FIELD)
 @Data
 public class JobDto {
+    @XmlAttribute
     private Long id;
     @XmlEnumValue("type")
     private JobType type;
@@ -15,14 +17,4 @@ public class JobDto {
     @XmlElement(name = "device")
     private String deviceName;
     private int amount;
-
-
-    @XmlAttribute
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }

@@ -40,7 +40,7 @@ public class JobServiceImpl implements JobService {
         JobSummaryDto jobSummaryDto = new JobSummaryDto();
         Map<String, Integer> summary = jobSummaryDto.summaryForTransaction;
 
-        for (JobDto jobDto : cmd.getJobs()) {
+        for (JobDto jobDto : cmd.jobs) {
             User user = userRepository.findByName(jobDto.getUserName());
 
             if (user == null) {
