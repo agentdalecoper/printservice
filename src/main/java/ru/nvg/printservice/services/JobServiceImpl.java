@@ -36,16 +36,16 @@ public class JobServiceImpl implements JobService {
         JobSummaryDto jobSummaryDto = new JobSummaryDto();
         Map<String, Integer> summary = jobSummaryDto.summaryForTransaction;
 
-        for (JobDto jobDto : cmd.jobs) {
-            User user = userRepository.findByName(jobDto.userName);
-            Device device = deviceRepository.findByName(jobDto.deviceName);
+        for (JobDto jobDto : cmd.getJobs()) {
+            User user = userRepository.findByName(jobDto.getUserName());
+            Device device = deviceRepository.findByName(jobDto.getDeviceName());
 
-            Job job = new Job(jobDto.getId(), jobDto.type, user, device,
-                    jobDto.amount, time);
+            Job job = new Job(jobDto.getId(), jobDto.getType(), user, device,
+                    jobDto.getAmount(), time);
 
             jobRepository.save(job);
             int amount = summary.getOrDefault(job.user.getName(), 0);
-            summary.put(job.user.getName(), amount + jobDto.amount);
+            summary.put(job.user.getName(), amount + jobDto.getAmount());
         }
 
         return jobSummaryDto;

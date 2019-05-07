@@ -6,16 +6,14 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "job")
 public class JobDto {
     private Long id;
-
     @XmlEnumValue("type")
-    public JobType type;
-
+    private JobType type;
     @XmlElement(name = "user")
-    public String userName;
+    private String userName;
     @XmlElement(name = "device")
-    public String deviceName;
+    private String deviceName;
+    private int amount;
 
-    public int amount;
 
     @XmlAttribute
     public void setId(Long id) {
@@ -24,5 +22,37 @@ public class JobDto {
 
     public Long getId() {
         return id;
+    }
+
+    public JobType getType() {
+        return type;
+    }
+
+    public void setType(JobType type) {
+        this.type = type;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public String getDeviceName() {
+        return deviceName;
+    }
+
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
     }
 }
