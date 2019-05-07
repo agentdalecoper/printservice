@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.nvg.printservice.domain.Job;
+import ru.nvg.printservice.domain.JobType;
 
 import java.time.LocalDateTime;
 
@@ -16,6 +17,7 @@ public class StatisticSummaryNodeDto {
     String user;
     String device;
     Integer amount;
+    JobType jobType;
     LocalDateTime time;
 
     public StatisticSummaryNodeDto(Job job)
@@ -24,6 +26,7 @@ public class StatisticSummaryNodeDto {
         user = job.user.getName();
         device = job.device.getName();
         amount = job.amount;
+        jobType = job.type;
         time = job.time;
     }
 
